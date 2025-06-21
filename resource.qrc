@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>linear algebra.jpeg</file>
+        <file>math.jpeg</file>
+        <file>background.jpg</file>
+        <file>logo.png</file>
+    </qresource>
+</RCC>
