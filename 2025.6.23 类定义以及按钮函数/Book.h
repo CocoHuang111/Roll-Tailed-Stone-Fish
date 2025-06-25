@@ -26,7 +26,9 @@ public:
     bool operator==(const Book &other) const;
     QJsonObject toJson() const;
     static Book fromJson(const QJsonObject &obj);
-    void update();
+    //6.25 新增保存函数
+    static bool saveToFile(const QList<Book>& books, const QString& filePath = "books.json");
+    static QList<Book> loadFromFile(const QString& filePath = "books.json");
 };
 
 #endif // BOOK_H
