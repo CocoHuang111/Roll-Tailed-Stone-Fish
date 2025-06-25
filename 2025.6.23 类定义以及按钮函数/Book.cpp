@@ -36,6 +36,24 @@ Book Book::fromJson(const QJsonObject &obj) {
     return book;
 }
 
-void Book::update() {
-    // 更新逻辑
+bool Book::saveToFile(const QList<Book>& books, const QString& filePath) {
+    // 1. 准备JSON数组
+    QJsonArray jsonArray;
+    for (const Book& book : books) {
+        jsonArray.append(book.toJson());
+    }
+
+    // 2. 创建JSON文档
+    QJsonDocument doc(jsonArray);
+
+    // 3. 写入文件
+    QFile file(filePath);
+    if (!file.open(QIODevice::WriteOnly)) {
+        qWarning() << "无法打开文件:" << file.errorString();
+        return false;
+    }
+
+    file.write(doc.toJson(QJsonDocument::Indented)); // Indented格式更易读
+    file.close();
+    return true;
 }
