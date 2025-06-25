@@ -57,3 +57,31 @@ bool Book::saveToFile(const QList<Book>& books, const QString& filePath) {
     file.close();
     return true;
 }
+
+QList<Book> Book::loadFromFile(const QString& filePath) {
+    QList<Book> books;
+
+    // 1. 打开文件
+    QFile file(filePath);
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning() << "Failed to open file:" << file.errorString();
+        return books; // 返回空列表
+    }
+
+    // 2. 读取并解析JSON
+    QByteArray jsonData = file.readAll();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonData);
+    if (doc.isNull() || !doc.isArray()) {
+        qWarning() << "Invalid JSON format or not an array";
+        return books;
+    }
+
+    // 3. 转换为Book对象
+    QJsonArray jsonArray = doc.array();
+    for (const QJsonValue& value : jsonArray) {
+        QJsonObject obj = value.toObject();
+        books.append(Book::fromJson(obj)); // 复用现有的fromJson方法
+    }
+
+    return books;
+}
