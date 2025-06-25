@@ -85,3 +85,30 @@ QList<Book> Book::loadFromFile(const QString& filePath) {
 
     return books;
 }
+/*
+使用示例：
+// 保存示例
+QList<Book> allBooks;
+allBooks.append(book1);
+allBooks.append(book2);
+
+if (Book::saveToFile(allBooks)) {
+    qDebug() << "保存成功";
+}
+
+// 加载示例
+QList<Book> loadedBooks = Book::loadFromFile();
+if (!loadedBooks.isEmpty()) {
+    qDebug() << "共加载" << loadedBooks.size() << "本书";
+}
+
+// 加载书籍数据
+QList<Book> allBooks = Book::loadFromFile();
+if (allBooks.isEmpty()) {
+    qDebug() << "没有加载到书籍数据，可能是文件不存在或为空";
+} else {
+    qDebug() << "成功加载" << allBooks.size() << "本书";
+    for (const Book& book : allBooks) {
+        // 处理每本书...
+    }
+}*/
