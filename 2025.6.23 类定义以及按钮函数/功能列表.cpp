@@ -8,6 +8,9 @@
 #include "User.h"
 #include "ui_mainwindow.h"
 
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+
 //这里的MAINWindow类就是mainwindow.h的补充，类后面的函数补充定义是对mainwindow.cpp的补充
 //补充的主要功能都是按按钮的事件，功能列在下面了，kfls检查一下按钮对不对得上
 //可以检查看一下函数内命名正不正确，复制粘贴到mainwindow.h就可以了
@@ -472,6 +475,41 @@ void MainWindow::displaySearchResults(const QList<Book*>& books) {
 
 // 搜索部分（ds建议）
 QList<Book*> MainWindow::searchBooks(const SearchParams& params) {
+    
+    QUrl url("http://localhost:8080/api/books/search");
+    QVariantMap fieldQueries;
+
+    if (!params.keyword.isEmpty()) {
+        fieldQueries["author"] = params.keyword;
+        fieldQueries["title"] = params.keyword;
+        fieldQueries["description"] = params.keyword;
+    }
+
+    if (!params.tags.isEmpty()) {
+        fieldQueries["tags"] = params.tags.join(" ");
+    }
+
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    QJsonObject requestBody = QJsonObject::fromVariantMap({
+        {"fieldQueries", QJsonObject::fromVariantMap(fieldQueries)},
+        {"topN", ui->resultCountSpinBox->value()},
+        {"minPrice", params.minPrice},
+        {"maxPrice", params.maxPrice}
+    });
+
+    
+    QNetworkReply *reply = networkManager->post(
+        request,
+        QJsonDocument(requestBody).toJson()
+    );
+
+    // TODO: 处理reply
+
+
+
+    
     // 示例伪代码
     QList<Book*> matchedBooks;
 
