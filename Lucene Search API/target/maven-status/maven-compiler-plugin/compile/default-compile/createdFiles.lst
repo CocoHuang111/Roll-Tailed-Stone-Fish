@@ -1,0 +1,9 @@
+com/example/lucene/BookController.class
+com/example/lucene/Searcher.class
+com/example/lucene/BookIndexer.class
+com/example/lucene/Book.class
+com/example/lucene/LuceneConfig.class
+com/example/Main.class
+com/example/lucene/BookLoader.class
+com/example/lucene/SearchApplication.class
+com/example/lucene/App.class

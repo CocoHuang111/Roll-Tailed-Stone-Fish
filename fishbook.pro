@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,11 +11,17 @@ CONFIG += c++17
 SOURCES += \
     logindialog.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    Book.cpp \
+    User.cpp \
+    UserManager.cpp
 
 HEADERS += \
     logindialog.h \
-    mainwindow.h
+    mainwindow.h \
+    Book.h \
+    User.h \
+    UserManager.h
 
 FORMS += \
     logindialog.ui \
