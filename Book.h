@@ -5,6 +5,10 @@
 #include <QStringList>
 #include <QDateTime>
 #include <QJsonObject>
+#include <QFile>
+#include <QTextStream>
+#include <QDebug>
+#include <QJsonDocument>
 
 class Book {
 public:
