@@ -13,13 +13,15 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     Book.cpp \
-    User.cpp
+    User.cpp \
+    UserManager.cpp
 
 HEADERS += \
     logindialog.h \
     mainwindow.h \
     Book.h \
-    User.h
+    User.h \
+    UserManager.h
 
 FORMS += \
     logindialog.ui \
