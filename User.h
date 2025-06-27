@@ -6,6 +6,8 @@
 #include <unordered_set>
 #include <QString>
 #include <QJsonObject>
+#include <QCryptographicHash>
+
 
 using namespace std;
 
